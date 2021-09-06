@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+var dataPoints = [];
+
+var options =  {
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "Daily Cases"
+	},
+    
+	axisY: {
+		title: "Cases",
+		titleFontSize: 24
+	},
+	data: [{
+		type: "column", 
+		dataPoints: dataPoints
+	}]
+};
+
+function addData(data) {
+	$.each(data['cases'], function(index, value){
+        dataPoints.push({label:index, y:parseInt(value)})
+    })
+    console.log(dataPoints)
+	$("#chartContainer").CanvasJSChart(options);
+
+}
+$.getJSON("https://disease.sh/v3/covid-19/historical/all?lastdays=20", addData);
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 500px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+</body>
+</html>
