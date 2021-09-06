@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+window.onload = function () {
+
+    var dataPoints= [] 
+            var mrrPoints=[
+                ['2021-Jan', 469000.0, 53000.0, -91000.0, 0.0, -0.0, 147.0, 15.0, 30, 0, 0, 0.0, -0.0, 147.0, 15.0, -30, 0, 0, 114262.5428, 27113.0969, 3186.1804, 30299.2772], 
+                ['2021-Feb', 521000.0, 53500.0, -80500.0, 0.0, -0.0, 160.0, 18.0, 26, 0, 0, 0.0, -0.0, 160.0, 18.0, -26, 0, 0, 110617.3831, 27268.0515, 2914.0153, 30182.0669], 
+                ['2021-Mar', 553500.0, 61500.0, -72500.0, 0.0, -0.0, 172.0, 17.0, 24, 0, 0, 0.0, -0.0, 172.0, 17.0, -24, 0, 0, 131039.0456, 33601.4431, 3523.1395, 37124.5827], 
+                ['2021-Apr', 626000.0, 40000.0, -65000.0, 0.0, -0.0, 191.0, 11.0, 21, 0, 0, 0.0, -0.0, 191.0, 11.0, -21, 0, 0, 124560.6914, 35126.6503, 3543.4061, 38670.0564], 
+                ['2021-May', 624000.0, 58500.0, -99000.0, 0.0, -0.0, 190.0, 19.0, 32, 0, 0, 0.0, -0.0, 190.0, 19.0, -32, 0, 0, 137865.4894, 37739.3025, 3903.2389, 41642.5413], 
+                ['2021-Jun', 581000.0, 3000.0, -42500.0, 0.0, -0.0, 181.0, 1.0, 13, 0, 0, 0.0, -0.0, 181.0, 1.0, -13, 0, 0, 155261.9561, 40116.2419, 3897.1746, 44013.4165], 
+                ['2021-Jul', 650500.0, 28000.0, -67000.0, 0.0, -0.0, 201.0, 9.0, 21, 0, 0, 0.0, -0.0, 201.0, 9.0, -21, 0, 0, 158343.4128, 40318.1565, 3904.8868, 44223.0434]
+        ]
+        $.each(mrrPoints, function(index, item){
+            dataPoints.push({
+                label:item[0],
+                y:item[1]
+            })
+        })
+        CanvasJS.addColorSet("greenShades",
+                [  '#FF9900',]);
+	var chart = new CanvasJS.Chart("chartContainer", {
+        colorSet: "greenShades",
+		title:{
+			text: "MRR Growth"              
+		},
+        axisX: {
+	          title: "Months",
+        },
+        axisY: {
+	        title: "Growth rate(in KSH)",
+	         titleFontSize: 24
+        },
+		data: [              
+		{
+			
+			type: "column",
+			dataPoints: dataPoints
+		}
+		]
+	});
+	chart.render();
+    let table=$('.table')
+    /*for(let i=0; i<mrrPoints.length; i++){
+        let subArr=mrrPoints[i]
+        for(let j=0; j<=10;j++){
+            var tableData= `<td>${subArr[j]}</td>`
+            //console.log(tableData)        
+        }
+        //console.log(tableData)
+        var row=`<tr>${tableData}</tr>`
+        console.log(row)
+    }*/ 
+
+}
+</script>
+</head>
+<body>
+    <table class='theTable'>
+    </table>
+
+    <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+</body>
+</html>
