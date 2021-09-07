@@ -36,7 +36,25 @@
             <tr id="contraction_count_row"><td>Customer Downgrading packages</td></tr>          
          </table>
    
-        <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer2" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer3" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer4" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer5" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer6" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer7" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer8" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer9" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer10" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer11" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer12" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer13" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer14" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer15" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer16" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer17" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer18" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer19" style="height: 400px; width: 100%;"></div>
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
@@ -54,24 +72,26 @@ window.onload = function () {
                 ['2021-Jun', 581000.0, 3000.0, -42500.0, 0.0, -0.0, 181.0, 1.0, 13, 0, 0, 0.0, -0.0, 181.0, 1.0, -13, 0, 0, 155261.9561, 40116.2419, 3897.1746, 44013.4165], 
                 ['2021-Jul', 650500.0, 28000.0, -67000.0, 0.0, -0.0, 201.0, 9.0, 21, 0, 0, 0.0, -0.0, 201.0, 9.0, -21, 0, 0, 158343.4128, 40318.1565, 3904.8868, 44223.0434]
         ]
+        function plotData(x,y, container, labelY,title){
+            
         $.each(mrrPoints, function(index, item){
             dataPoints.push({
-                label:item[0],
-                y:item[1]
+                label:item[x],
+                y:item[y]
             })
         })
         CanvasJS.addColorSet("greenShades",
                 [  '#FF9900',]);
-	var chart = new CanvasJS.Chart("chartContainer", {
+	var chart = new CanvasJS.Chart(container, {
         colorSet: "greenShades",
 		title:{
-			text: "MRR Growth"              
+			text: title,              
 		},
         axisX: {
 	          title: "Months",
         },
         axisY: {
-	        title: "Growth rate(in KSH)",
+	        title: labelY,
 	         titleFontSize: 24
         },
 		data: [              
@@ -83,8 +103,11 @@ window.onload = function () {
 		]
 	});
 	chart.render();
-    let table=$('.table')
+    dataPoints.length=0
 
+}
+
+    let table=$('.table')
     let tablePoints=mrrPoints.slice(0,6)
     $.each(mrrPoints, function(index, value){
         let tableData=[]
@@ -117,7 +140,26 @@ window.onload = function () {
     table0_5(0,12)
       
     })
-
+    
+    plotData(0,1,"chartContainer1", "Growth Rate (in Ksh)", "MRR Growth")
+    plotData(0,2, "chartContainer2", "Revenue Rate(in ksh)", "New subscription" )
+    plotData(0,3,"chartContainer3", "Revenue Rate (in Ksh)", "Lost subscription")
+   plotData(0,4, "chartContainer4", "Upgrade Rate(in ksh)" , "Subscription expansion" )
+   plotData(0,5,"chartContainer5", "DownGrade Rate (in Ksh)", "Subscription Contraction")
+   plotData(0,6, "chartContainer6", "Customers Rate(in ksh)", "Customers for Particular amount")
+   //plotData(0,7,"chartContainer7", "New customers", "New customers")
+   //plotData(0,8, "chartContainer8", "Lost Customers", "Lost Customers" )
+  // plotData(0,9,"chartContainer9", "Upgraded customers", "Upgraded customers")
+  // plotData(0,10, "chartContainer10", "DownGraded customers", "Downgraded customers" )
+   //plotData(0,11,"chartContainer11", "Time online(in minutes)", "Time online")
+   //plotData(0,12, "chartContainer12", "Download rate", "Download" )
+  // plotData(0,13,"chartContainer13", "Upload Rate", "Upload")
+   //plotData(0,14, "chartContainer14", "Total consumption", "Total Consumption" )
+   //plotData(0,15,"chartContainer15", "Subscription Rate", "Subscription Rate")
+   //plotData(0,17,"chartContainer17", "Retention", "Retention Rate")
+   //plotData(0,18,"chartContainer18", "Customer Itv", "Customer Itv")
+  // plotData(0,22,"chartContainer19", " Perfomance of Station downtimes", "Perfomance of station downtimes")
+   
 }
 </script>
   
