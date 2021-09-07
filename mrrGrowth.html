@@ -1,6 +1,43 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>Report</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td{
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+    <body>
+        <table class='table1'>
+            <tr id="header_row"><td>Duration</td></tr>
+            <tr id="opening_balance_row"><td >Opening Balance</td></tr>
+            <tr id="new_subscription_row"><td>New Subscription</td></tr>
+            <tr id="lost_subscription"><td>Lost Subscription</td></tr>
+            <tr id="expansion_subscription_row"><td>Subscription Expansion</td></tr>
+            <tr id="contraction_subscription_row"><td>Subscription Contraction</td></tr>      
+            <tr id="opening_count_row"><td>Opening Customers</td></tr>
+            <tr id="new_count_row"><td>New Customers</td></tr>
+            <tr id="lost_count_row"><td>Lost customers</td></tr>
+            <tr id="expansion_count_row"><td>Customer upgrading packages</td></tr>
+            <tr id="contraction_count_row"><td>Customer Downgrading packages</td></tr>          
+         </table>
+   
+        <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
@@ -47,24 +84,42 @@ window.onload = function () {
 	});
 	chart.render();
     let table=$('.table')
-    /*for(let i=0; i<mrrPoints.length; i++){
-        let subArr=mrrPoints[i]
-        for(let j=0; j<=10;j++){
-            var tableData= `<td>${subArr[j]}</td>`
-            //console.log(tableData)        
+
+    let tablePoints=mrrPoints.slice(0,6)
+    $.each(mrrPoints, function(index, value){
+        let tableData=[]
+        let tableRow=[]
+        //console.log(value)
+        function table0_5(m,n){
+        let subArr=value.slice(m,n)
+        //console.log(subArr)
+        for(let i=0; i<subArr.length;i++){
+            tableData.push("<td>" + subArr[i] +"</td>")
+            //console.log(tableData)
         }
-        //console.log(tableData)
-        var row=`<tr>${tableData}</tr>`
-        console.log(row)
-    }*/ 
+       // console.log(tableData[0])
+        $(document).ready(function(){
+            console.log(tableData[0])
+            $('#header_row').append(tableData[0])
+            $("#opening_balance_row").append(tableData[1])
+            $("#new_subscription_row").append(tableData[2])
+            $("#lost_subscription").append(tableData[3])
+            $("#expansion_subscription_row").append(tableData[4])
+            $("#contraction_subscription_row").append(tableData[5])
+            $('#opening_count_row').append(tableData[7])
+            $("#new_count_row").append(tableData[8])
+            $("#lost_count_row").append(tableData[9])
+            $("#expansion_count_row").append(tableData[10])
+            $("#contraction_count_row").append(tableData[11])
+        }) 
+    }
+    
+    table0_5(0,12)
+      
+    })
 
 }
 </script>
-</head>
-<body>
-    <table class='theTable'>
-    </table>
-
-    <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+  
 </body>
 </html>
