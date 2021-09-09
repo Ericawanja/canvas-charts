@@ -53,6 +53,9 @@
                   <div id="plan_purchases_container1" style="height: 400px; width: 100%;"></div>
                   <div id="plan_purchases_container2" style="height: 400px; width: 100%;"></div>
               </div>
+              <div class="lineGraphContainer">
+                <div id="lineGraph1" style="height: 300px; width: 100%;"></div>
+              </div>
          </div>
       
 
@@ -203,6 +206,110 @@ chart.render();
   //function(htmlContainer, Title, PlanToPlot)NB; pass as a string, case sensitive
   plotPlan_Purchases("plan_purchases_container1", "Purchases", "purchases")
   plotPlan_Purchases("plan_purchases_container2", "Plan Amount", "plan_amount")
+
+  //lineGraph
+  
+  let lineGraphData=[
+    ['2021-Jan', 471500.0, 53000.0, -91000.0, 0.0, -0.0, 148.0, 15.0, -30, 0, 0, 114262.5428, 27113.0969, 3186.1804, 30299.2772], 
+    ['2021-Feb', 521000.0, 53500.0, -80500.0, 0.0, -0.0, 160.0, 18.0, -26, 0, 0, 110617.3831, 27268.0515, 2914.0153, 30182.0669], 
+    ['2021-Mar', 553500.0, 61500.0, -72500.0, 0.0, -0.0, 172.0, 17.0, -24, 0, 0, 131039.0456, 33601.4431, 3523.1395, 37124.5827], 
+    ['2021-Apr', 626000.0, 40000.0, -65000.0, 0.0, -0.0, 191.0, 11.0, -21, 0, 0, 124560.6914, 35126.6503, 3543.4061, 38670.0564], 
+    ['2021-May', 624000.0, 58500.0, -99000.0, 0.0, -0.0, 190.0, 19.0, -32, 0, 0, 137865.4894, 37739.3025, 3903.2389, 41642.5413], 
+    ['2021-Jun', 584000.0, 3000.0, -36500.0, 0.0, -0.0, 182.0, 1.0, -11, 0, 0, 155257.8008, 40096.7565, 3896.0722, 43992.8287], 
+    ['2021-Jul', 656500.0, 28000.0, -70000.0, 0.0, -0.0, 203.0, 9.0, -22, 0, 0, 158379.2783, 40328.1151, 3906.1855, 44234.3006]
+]
+function lineGraph(timeOnline, download, upload, consumption, container){
+    let timeOnlineData=[]
+    let downloadData=[]
+    let uploadData=[]
+    let consumptionData=[]
+    $.each(lineGraphData, function(index, item){
+        timeOnlineData.push(
+            {
+              label:item[0],
+              y:item[timeOnline]
+        })
+        downloadData.push(
+            {
+                label:item[0],
+                y:item[download]
+            }
+        )
+        uploadData.push(
+            {
+                label:item[0],
+                y:item[upload]
+            }
+        )
+        consumptionData.push(
+            {
+               label:item[0],
+               y:item[consumption]
+           }
+        )
+    })
+    console.log(timeOnlineData)
+    console.log(uploadData)
+    console.log(downloadData)
+    console.log(consumptionData)
+
+var chart = new CanvasJS.Chart(container, {
+	animationEnabled: true,
+	exportEnabled: true,
+	title:{
+		text: "Time online and data consumed"             
+	}, 
+	axisY:{
+		title: "Data"
+	},
+	toolTip: {
+		shared: true
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [{        
+		type: "spline",  
+		name: "Time online",        
+		showInLegend: true,
+		dataPoints: timeOnlineData
+	}, 
+	{        
+		type: "spline",
+		name: "Download",        
+		showInLegend: true,
+		dataPoints: downloadData
+	},
+	{        
+		type: "spline",  
+		name: "Upload",        
+		showInLegend: true,
+		dataPoints: uploadData
+	},
+	 
+	{        
+		type: "spline",  
+		name: "Consumption Data",        
+		showInLegend: true,
+		dataPoints: consumptionData
+	}]
+});
+
+chart.render();
+
+function toggleDataSeries(e) {
+	if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;            
+	}
+	chart.render();
+}
+}
+lineGraph(11,12,13,14, "lineGraph1")
+
 }
 
    
