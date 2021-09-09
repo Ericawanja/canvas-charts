@@ -42,7 +42,7 @@
         <div id="chartContainer4" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer5" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer6" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer7" style="height: 400px; width: 100%;"></div>
+        <!--<div id="chartContainer7" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer8" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer9" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer10" style="height: 400px; width: 100%;"></div>
@@ -54,13 +54,16 @@
         <div id="chartContainer16" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer17" style="height: 400px; width: 100%;"></div>
         <div id="chartContainer18" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer19" style="height: 400px; width: 100%;"></div>
+        <div id="chartContainer19" style="height: 400px; width: 100%;"></div>-->
+        <div id="plan_purchases_container1" style="height: 400px; width: 100%;"></div>
+        <div id="plan_purchases_container2" style="height: 400px; width: 100%;"></div>
+      
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 
-window.onload = function () {
+window.onload = function () {  
 
     var dataPoints= [] 
             var mrrPoints=[
@@ -159,8 +162,63 @@ window.onload = function () {
    //plotData(0,17,"chartContainer17", "Retention", "Retention Rate")
    //plotData(0,18,"chartContainer18", "Customer Itv", "Customer Itv")
   // plotData(0,22,"chartContainer19", " Perfomance of Station downtimes", "Perfomance of station downtimes")
-   
+
+  
+
+  var planAndPurchasesData= [
+    {'username': 'lamuhouse', 'first_name': 'Lamu House', 'purchases': 7, 'plan_amount': 112000.0},
+    {'username': 'ibnusinah', 'first_name': 'ibnu sina', 'purchases': 7, 'plan_amount': 45500.0}, 
+    {'username': 'almaawiya', 'first_name': 'Al Maawiya', 'purchases': 6, 'plan_amount': 42000.0},
+    {'username': 'shelaroyal', 'first_name': 'Alwiya', 'purchases': 7, 'plan_amount': 35000.0}, 
+    {'username': 'maharus', 'first_name': 'Fahad', 'purchases': 7, 'plan_amount': 35000.0}, 
+    {'username': 'morocco', 'first_name': 'Morocco', 'purchases': 7, 'plan_amount': 35000.0}, 
+    {'username': 'habib', 'first_name': 'Abdalla', 'purchases': 7, 'plan_amount': 35000.0}, 
+    {'username': 'savelamu', 'first_name': 'Alwiya', 'purchases': 7, 'plan_amount': 35000.0}, 
+    {'username': 'kinoonihouse', 'first_name': 'Abdul', 'purchases': 7, 'plan_amount': 35000.0}, 
+    {'username': 'stephanie', 'first_name': 'Stephanie', 'purchases': 6, 'plan_amount': 30000.0}, 
+    {'username': 'brightgirls', 'first_name': 'Bright Girls', 'purchases': 6, 'plan_amount': 30000},
+    {'username': 'fatumastower', 'first_name': 'Angelika', 'purchases': 3, 'plan_amount': 30000.0},
+    {'username': 'majid', 'first_name': 'Majid', 'purchases': 7, 'plan_amount': 28000.0}, 
+    {'username': 'alibahasan', 'first_name': 'Ali said', 'purchases': 9, 'plan_amount': 27000.0}, 
+    {'username': 'badru', 'first_name': 'Badru', 'purchases': 9, 'plan_amount': 27000.0},
+     {'username': 'charleskamadi', 'first_name': 'Charles', 'purchases': 5, 'plan_amount': 25000.0},
+     {'username': 'kasbah', 'first_name': 'Kasbah', 'purchases': 3, 'plan_amount': 25000.0}, 
+     {'username': 'mewadic', 'first_name': 'Mewa', 'purchases': 5, 'plan_amount': 25000.0}, 
+     {'username': 'saada', 'first_name': 'Saada', 'purchases': 5, 'plan_amount': 25000.0}, 
+     {'username': 'shellastopover', 'first_name': 'Hamid', 'purchases': 8, 'plan_amount': 24000.0}
+    ]
+    function plotPlan_Purchases(container, title, objProperty){
+    let purchasesData=[]
+    let planAmountData=[]
+    $.each(planAndPurchasesData, function(index, item){
+        purchasesData.push({
+            y:item[objProperty],
+            label:item['username']
+        })
+    })
+    console.log(purchasesData)
+    var chart = new CanvasJS.Chart(container,
+    {
+      title:{
+        text: title
+      },
+      data: [
+      {
+        type: "bar",
+        dataPoints: purchasesData
+      },
+      ]
+    });
+
+chart.render();
+  }
+  //function(htmlContainer, Title, PlanToPlot)NB; pass as a string, case sensitive
+  plotPlan_Purchases("plan_purchases_container1", "Purchases", "purchases")
+  plotPlan_Purchases("plan_purchases_container2", "Plan Amount", "plan_amount")
 }
+
+   
+
 </script>
   
 </body>
