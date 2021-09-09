@@ -35,28 +35,25 @@
             <tr id="expansion_count_row"><td>Customer upgrading packages</td></tr>
             <tr id="contraction_count_row"><td>Customer Downgrading packages</td></tr>          
          </table>
-   
-        <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer2" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer3" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer4" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer5" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer6" style="height: 400px; width: 100%;"></div>
-        <!--<div id="chartContainer7" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer8" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer9" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer10" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer11" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer12" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer13" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer14" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer15" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer16" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer17" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer18" style="height: 400px; width: 100%;"></div>
-        <div id="chartContainer19" style="height: 400px; width: 100%;"></div>-->
-        <div id="plan_purchases_container1" style="height: 400px; width: 100%;"></div>
-        <div id="plan_purchases_container2" style="height: 400px; width: 100%;"></div>
+         <!--MAIN WRAPPER OF ALL GRAPHS-->
+         <div class="wrapper">
+             <div class="columnChartContainers">
+                <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer2" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer3" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer4" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer5" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer6" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer7" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer8" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer9" style="height: 400px; width: 100%;"></div>
+                <div id="chartContainer10" style="height: 400px; width: 100%;"></div>
+               </div>
+              <div class='verticalCharts'>
+                  <div id="plan_purchases_container1" style="height: 400px; width: 100%;"></div>
+                  <div id="plan_purchases_container2" style="height: 400px; width: 100%;"></div>
+              </div>
+         </div>
       
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -150,20 +147,11 @@ window.onload = function () {
    plotData(0,4, "chartContainer4", "Upgrade Rate(in ksh)" , "Subscription expansion" )
    plotData(0,5,"chartContainer5", "DownGrade Rate (in Ksh)", "Subscription Contraction")
    plotData(0,6, "chartContainer6", "Customers Rate(in ksh)", "Customers for Particular amount")
-   //plotData(0,7,"chartContainer7", "New customers", "New customers")
-   //plotData(0,8, "chartContainer8", "Lost Customers", "Lost Customers" )
-  // plotData(0,9,"chartContainer9", "Upgraded customers", "Upgraded customers")
-  // plotData(0,10, "chartContainer10", "DownGraded customers", "Downgraded customers" )
-   //plotData(0,11,"chartContainer11", "Time online(in minutes)", "Time online")
-   //plotData(0,12, "chartContainer12", "Download rate", "Download" )
-  // plotData(0,13,"chartContainer13", "Upload Rate", "Upload")
-   //plotData(0,14, "chartContainer14", "Total consumption", "Total Consumption" )
-   //plotData(0,15,"chartContainer15", "Subscription Rate", "Subscription Rate")
-   //plotData(0,17,"chartContainer17", "Retention", "Retention Rate")
-   //plotData(0,18,"chartContainer18", "Customer Itv", "Customer Itv")
-  // plotData(0,22,"chartContainer19", " Perfomance of Station downtimes", "Perfomance of station downtimes")
-
-  
+   plotData(0,7,"chartContainer7", "New customers", "New customers")
+   plotData(0,8, "chartContainer8", "Lost Customers", "Lost Customers" )
+   plotData(0,9,"chartContainer9", "Upgraded customers", "Upgraded customers")
+   plotData(0,10, "chartContainer10", "DownGraded customers", "Downgraded customers" )
+     
 
   var planAndPurchasesData= [
     {'username': 'lamuhouse', 'first_name': 'Lamu House', 'purchases': 7, 'plan_amount': 112000.0},
