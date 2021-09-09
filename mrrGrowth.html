@@ -37,7 +37,7 @@
          </table>
          <!--MAIN WRAPPER OF ALL GRAPHS-->
          <div class="wrapper">
-             <div class="columnChartContainers">
+            <!-- <div class="columnChartContainers">
                 <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
                 <div id="chartContainer2" style="height: 400px; width: 100%;"></div>
                 <div id="chartContainer3" style="height: 400px; width: 100%;"></div>
@@ -55,6 +55,12 @@
               </div>
               <div class="lineGraphContainer">
                 <div id="lineGraph1" style="height: 300px; width: 100%;"></div>
+              </div>-->
+              <div class="pieCharts">
+                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+               <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
               </div>
          </div>
       
@@ -65,7 +71,7 @@
 
 window.onload = function () {  
 
-    var dataPoints= [] 
+    /*var dataPoints= [] 
             var mrrPoints=[
                 ['2021-Jan', 469000.0, 53000.0, -91000.0, 0.0, -0.0, 147.0, 15.0, 30, 0, 0, 0.0, -0.0, 147.0, 15.0, -30, 0, 0, 114262.5428, 27113.0969, 3186.1804, 30299.2772], 
                 ['2021-Feb', 521000.0, 53500.0, -80500.0, 0.0, -0.0, 160.0, 18.0, 26, 0, 0, 0.0, -0.0, 160.0, 18.0, -26, 0, 0, 110617.3831, 27268.0515, 2914.0153, 30182.0669], 
@@ -308,7 +314,134 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 }
-lineGraph(11,12,13,14, "lineGraph1")
+lineGraph(11,12,13,14, "lineGraph1")*/ 
+
+//PIECHART
+
+var plans = [{'name': '4 Mbps for Sh 7000', 'plan_amount': 42000.0, 'plan_purchases': 6}, {'name': '2 Mbps Shella', 'plan_amount': 441000.0, 'plan_purchases': 147}, {'name': '1 Mbps for sh 2,000', 'plan_amount': 48000.0, 'plan_purchases': 24}, {'name': '3Mbps for sh 4,000', 'plan_amount': 52000.0, 'plan_purchases': 13}, {'name': '2 Mbps for sh 3,000', 'plan_amount': 87000.0, 'plan_purchases': 29}, {'name': '7 mbps for ksh 16,000', 'plan_amount': 112000.0, 'plan_purchases': 7}, {'name': '3 Mbps for sh 3,000', 'plan_amount': 2805000.0, 'plan_purchases': 935}, {'name': '1Mbps for sh 2,500', 'plan_amount': 135000.0, 'plan_purchases': 54}, {'name': '4 Mbps Shella', 'plan_amount': 36000.0, 'plan_purchases': 9}, {'name': '5 Mbps for sh 6,500', 'plan_amount': 45500.0, 'plan_purchases': 7}, {'name': '7 mbps shella', 'plan_amount': 50000.0, 'plan_purchases': 5}, {'name': '3 Mbps shella', 'plan_amount': 195000.0, 'plan_purchases': 39}, {'name': '3 Mbps for sh 5,000', 'plan_amount': 225000.0, 'plan_purchases': 45}, {'name': '5 Mbps Shella', 'plan_amount': 7000.0, 'plan_purchases': 1}]
+var plan_plot_amount=[]
+var plan_plot_count = []
+$.each(plans,function(k,v){
+   plan_plot_amount.push({y:v['plan_amount'],label:v['name']})
+   plan_plot_count.push({y:v['plan_purchases'],label:v['name']})
+   console.log(v['name'])
+   console.log(v['plan_amount'])
+   console.log(v['plan_purchases'])
+})
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Plan Amount Subscriptions"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: plan_plot_amount
+	}]
+});
+
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+	animationEnabled: true,
+	title: {
+		text: "Purchases"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: plan_plot_count
+	}]
+});
+
+
+var chart3 = new CanvasJS.Chart("chartContainer3", {
+	animationEnabled: true,
+	title:{
+		text: "Olympic Medals of all Times (till 2016 Olympics)"
+	},
+	axisY: {
+		title: "Medals",
+		includeZero: true
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	toolTip: {
+		shared: true,
+		content: toolTipFormatter
+	},
+	data: [{
+		type: "bar",
+		showInLegend: true,
+		name: "Gold",
+		color: "teal",
+		dataPoints:plan_plot_amount
+	}]
+});
+
+
+var chart4 = new CanvasJS.Chart("chartContainer4", {
+	animationEnabled: true,
+	title:{
+		text: "Olympic Medals of all Times (till 2016 Olympics)"
+	},
+	axisY: {
+		title: "Medals",
+		includeZero: true
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	toolTip: {
+		shared: true,
+		content: toolTipFormatter
+	},
+	data: [{
+		type: "bar",
+		showInLegend: true,
+		name: "Gold",
+		color: "teal",
+		dataPoints:plan_plot_count
+	}]
+});
+
+
+chart3.render();
+chart4.render();
+function toolTipFormatter(e) {
+	var str = "";
+	var total = 0 ;
+	var str3;
+	var str2 ;
+	for (var i = 0; i < e.entries.length; i++){
+		var str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\">" + e.entries[i].dataSeries.name + "</span>: <strong>"+  e.entries[i].dataPoint.y + "</strong> <br/>" ;
+		total = e.entries[i].dataPoint.y + total;
+		str = str.concat(str1);
+	}
+	str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
+	str3 = "<span style = \"color:Tomato\">Total: </span><strong>" + total + "</strong><br/>";
+	return (str2.concat(str)).concat(str3);
+}
+
+function toggleDataSeries(e) {
+	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+chart.render();
+chart2.render();
+
 
 }
 
