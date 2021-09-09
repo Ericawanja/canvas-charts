@@ -37,7 +37,7 @@
          </table>
          <!--MAIN WRAPPER OF ALL GRAPHS-->
          <div class="wrapper">
-            <!-- <div class="columnChartContainers">
+             <div class="columnChartContainers">
                 <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
                 <div id="chartContainer2" style="height: 400px; width: 100%;"></div>
                 <div id="chartContainer3" style="height: 400px; width: 100%;"></div>
@@ -55,12 +55,12 @@
               </div>
               <div class="lineGraphContainer">
                 <div id="lineGraph1" style="height: 300px; width: 100%;"></div>
-              </div>-->
+              </div>
               <div class="pieCharts">
-                <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
-               <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+                <div id="planChartContainer2" style="height: 370px; width: 100%;"></div>
+                <div id="planChartContainer" style="height: 370px; width: 100%;"></div>
+                <div id="planChartContainer3" style="height: 370px; width: 100%;"></div>
+               <div id="planChartContainer4" style="height: 370px; width: 100%;"></div>
               </div>
          </div>
       
@@ -71,7 +71,7 @@
 
 window.onload = function () {  
 
-    /*var dataPoints= [] 
+    var dataPoints= [] 
             var mrrPoints=[
                 ['2021-Jan', 469000.0, 53000.0, -91000.0, 0.0, -0.0, 147.0, 15.0, 30, 0, 0, 0.0, -0.0, 147.0, 15.0, -30, 0, 0, 114262.5428, 27113.0969, 3186.1804, 30299.2772], 
                 ['2021-Feb', 521000.0, 53500.0, -80500.0, 0.0, -0.0, 160.0, 18.0, 26, 0, 0, 0.0, -0.0, 160.0, 18.0, -26, 0, 0, 110617.3831, 27268.0515, 2914.0153, 30182.0669], 
@@ -314,7 +314,7 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 }
-lineGraph(11,12,13,14, "lineGraph1")*/ 
+lineGraph(11,12,13,14, "lineGraph1")
 
 //PIECHART
 
@@ -329,7 +329,7 @@ $.each(plans,function(k,v){
    console.log(v['plan_purchases'])
 })
 
-var chart = new CanvasJS.Chart("chartContainer", {
+var chart = new CanvasJS.Chart("planChartContainer", {
 	animationEnabled: true,
 	title: {
 		text: "Plan Amount Subscriptions"
@@ -343,7 +343,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	}]
 });
 
-var chart2 = new CanvasJS.Chart("chartContainer2", {
+var chart2 = new CanvasJS.Chart("planChartContainer2", {
 	animationEnabled: true,
 	title: {
 		text: "Purchases"
@@ -358,13 +358,13 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 });
 
 
-var chart3 = new CanvasJS.Chart("chartContainer3", {
+var chart3 = new CanvasJS.Chart("planChartContainer3", {
 	animationEnabled: true,
 	title:{
-		text: "Olympic Medals of all Times (till 2016 Olympics)"
+		text: "Plan Amount Subscription"
 	},
 	axisY: {
-		title: "Medals",
+		title: "Subscription",
 		includeZero: true
 	},
 	legend: {
@@ -378,20 +378,20 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	data: [{
 		type: "bar",
 		showInLegend: true,
-		name: "Gold",
+		name: "Subscription",
 		color: "teal",
 		dataPoints:plan_plot_amount
 	}]
 });
 
 
-var chart4 = new CanvasJS.Chart("chartContainer4", {
+var chart4 = new CanvasJS.Chart("planChartContainer4", {
 	animationEnabled: true,
 	title:{
-		text: "Olympic Medals of all Times (till 2016 Olympics)"
+		text: "Purchases"
 	},
 	axisY: {
-		title: "Medals",
+		title: "Purchases count",
 		includeZero: true
 	},
 	legend: {
@@ -405,7 +405,7 @@ var chart4 = new CanvasJS.Chart("chartContainer4", {
 	data: [{
 		type: "bar",
 		showInLegend: true,
-		name: "Gold",
+		name: "Purchases",
 		color: "teal",
 		dataPoints:plan_plot_count
 	}]
